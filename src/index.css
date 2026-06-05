@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+
+:root {
+  /* Neutral brutalist: grayscale + hard edges */
+  --text: #3d3d3d;
+  --text-h: #0a0a0a;
+  --bg: #e2e2e2;
+  --surface: #ebebeb;
+  --border: #0a0a0a;
+  --code-bg: #d0d0d0;
+  --muted: #6b6b6b;
+  --accent: #0a0a0a;
+  --accent-contrast: #f0f0f0;
+  --shadow-hard: 5px 5px 0 #0a0a0a;
+
+  --sans: ui-sans-serif, system-ui, sans-serif;
+  --mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+  font: 16px/1.5 var(--sans);
+  letter-spacing: 0.01em;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a8a8a8;
+    --text-h: #f0f0f0;
+    --bg: #0f0f0f;
+    --surface: #141414;
+    --border: #e8e8e8;
+    --code-bg: #1c1c1c;
+    --muted: #888;
+    --accent: #f0f0f0;
+    --accent-contrast: #0a0a0a;
+    --shadow-hard: 5px 5px 0 #e8e8e8;
+  }
+}
+
+#root {
+  isolation: isolate;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  padding: 0.15rem 0.35rem;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--text-h);
+  border-radius: 0;
+}

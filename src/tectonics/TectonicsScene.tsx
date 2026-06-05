@@ -1,0 +1,123 @@
+import { useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
+import type { Group } from 'three'
+import { EarthExplorer } from './scenes/EarthExplorer'
+import { TectonicPlatesScene } from './scenes/TectonicPlatesScene'
+import { preloadSketchfabModels, SketchfabModelScene } from './scenes/SketchfabModelScene'
+import { ExplorerLighting } from './shared/ExplorerLighting'
+import { DETAIL_MODELS, getDetailModelSettings, type DetailId } from './topicDetail'
+import type { TectonicLayerId } from './tectonicLayers'
+import { useExplorerCamera, type CameraMode } from './useExplorerCamera'
+
+export type AppView = 'globe' | 'model-detail'
+
+type TectonicsSceneProps = {
+  view: AppView
+  transitioning: boolean
+  selectedId: string | null
+  focusTopicId: string | null
+  detailId: DetailId | null
+  activeTectonicLayers: Record<TectonicLayerId, boolean>
+  layerAnimKeys: Partial<Record<TectonicLayerId, number>>
+  onSelectTopic: (id: string) => void
+  onDeselect: () => void
+}
+
+preloadSketchfabModels(Object.values(DETAIL_MODELS))
+
+function CameraController({ mode, enabled }: { mode: CameraMode; enabled: boolean }) {
+  useExplorerCamera(mode, enabled)
+  return null
+}
+
+function ModelCameraSetup({
+  active,
+  cameraPosition,
+}: {
+  active: boolean
+  cameraPosition: [number, number, number]
+}) {
+  const { camera } = useThree()
+
+  useEffect(() => {
+    if (!active) return
+    camera.position.set(...cameraPosition)
+    camera.lookAt(0, 0, 0)
+  }, [active, camera, cameraPosition])
+
+  return null
+}
+
+export function TectonicsScene({
+  view,
+  transitioning,
+  selectedId,
+  focusTopicId,
+  detailId,
+  activeTectonicLayers,
+  layerAnimKeys,
+  onSelectTopic,
+  onDeselect,
+}: TectonicsSceneProps) {
+  const globeGroupRef = useRef<Group>(null)
+
+  const showTectonicPlates = view === 'model-detail' && detailId === 'rift' && !transitioning
+  const showLocalModel =
+    view === 'model-detail' && detailId !== null && detailId !== 'rift' && !transitioning
+  const modelSettings = detailId && detailId !== 'rift' ? getDetailModelSettings(detailId) : null
+  const modelPath = detailId && detailId !== 'rift' ? DETAIL_MODELS[detailId] : null
+
+  const cameraMode: CameraMode = view === 'model-detail' ? 'rift' : 'globe'
+  const cameraDriven = transitioning
+  const globeControls = view === 'globe' && !transitioning
+
+  useFrame(() => {
+    if (!globeGroupRef.current) return
+    globeGroupRef.current.visible =
+      !showTectonicPlates &&
+      (view === 'globe' || (transitioning && view === 'model-detail' && detailId !== 'rift'))
+  })
+
+  return (
+    <>
+      {!showTectonicPlates && !showLocalModel ? <ExplorerLighting /> : null}
+      <CameraController
+        mode={cameraMode}
+        enabled={cameraDriven && !showTectonicPlates && !showLocalModel}
+      />
+      <ModelCameraSetup
+        active={showLocalModel}
+        cameraPosition={modelSettings?.camera ?? [0, 1.2, 6.5]}
+      />
+
+      {!showTectonicPlates ? (
+        <group ref={globeGroupRef}>
+          <EarthExplorer
+            selectedId={selectedId}
+            focusTopicId={focusTopicId}
+            onSelectTopic={onSelectTopic}
+            onDeselect={onDeselect}
+            controlsEnabled={globeControls}
+          />
+        </group>
+      ) : null}
+
+      {showTectonicPlates ? (
+        <TectonicPlatesScene
+          key="tectonic-plates"
+          activeLayers={activeTectonicLayers}
+          layerAnimKeys={layerAnimKeys}
+        />
+      ) : null}
+
+      {showLocalModel && modelPath && modelSettings ? (
+        <SketchfabModelScene
+          modelPath={modelPath}
+          scale={modelSettings.scale}
+          minDistance={modelSettings.minDistance}
+          maxDistance={modelSettings.maxDistance}
+        />
+      ) : null}
+    </>
+  )
+}

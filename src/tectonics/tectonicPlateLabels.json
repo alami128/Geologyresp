@@ -1,0 +1,421 @@
+{
+  "source": "PB2002 plates (Bird 2003)",
+  "plates": [
+    {
+      "code": "AS",
+      "name": "Aegean Sea",
+      "lat": 37.18,
+      "lon": 25.41,
+      "tier": "minor",
+      "vertices": 49
+    },
+    {
+      "code": "AF",
+      "name": "Africa",
+      "lat": 4.02,
+      "lon": -4.01,
+      "tier": "major",
+      "vertices": 806
+    },
+    {
+      "code": "AP",
+      "name": "Altiplano",
+      "lat": -17.64,
+      "lon": -69.25,
+      "tier": "minor",
+      "vertices": 54
+    },
+    {
+      "code": "AM",
+      "name": "Amur",
+      "lat": 43.75,
+      "lon": 126.85,
+      "tier": "major",
+      "vertices": 169
+    },
+    {
+      "code": "AT",
+      "name": "Anatolia",
+      "lat": 38.3,
+      "lon": 32.66,
+      "tier": "minor",
+      "vertices": 66
+    },
+    {
+      "code": "AN",
+      "name": "Antarctica",
+      "lat": -82.03,
+      "lon": 60.96,
+      "tier": "major",
+      "vertices": 746
+    },
+    {
+      "code": "AR",
+      "name": "Arabia",
+      "lat": 20.79,
+      "lon": 48.75,
+      "tier": "major",
+      "vertices": 246
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "lat": -30.57,
+      "lon": 141.9,
+      "tier": "major",
+      "vertices": 955
+    },
+    {
+      "code": "BR",
+      "name": "Balmoral Reef",
+      "lat": -15.44,
+      "lon": 176.04,
+      "tier": "minor",
+      "vertices": 95
+    },
+    {
+      "code": "BS",
+      "name": "Banda Sea",
+      "lat": -4.65,
+      "lon": 125.83,
+      "tier": "minor",
+      "vertices": 72
+    },
+    {
+      "code": "BH",
+      "name": "Birds Head",
+      "lat": -1.12,
+      "lon": 132.42,
+      "tier": "minor",
+      "vertices": 56
+    },
+    {
+      "code": "BU",
+      "name": "Burma",
+      "lat": 8.96,
+      "lon": 94.19,
+      "tier": "minor",
+      "vertices": 59
+    },
+    {
+      "code": "CA",
+      "name": "Caribbean",
+      "lat": 13.89,
+      "lon": -73.8,
+      "tier": "major",
+      "vertices": 179
+    },
+    {
+      "code": "CL",
+      "name": "Caroline",
+      "lat": 2.83,
+      "lon": 140.55,
+      "tier": "minor",
+      "vertices": 94
+    },
+    {
+      "code": "CO",
+      "name": "Cocos",
+      "lat": 8.5,
+      "lon": -95.5,
+      "tier": "major",
+      "vertices": 158
+    },
+    {
+      "code": "CR",
+      "name": "Conway Reef",
+      "lat": -18.92,
+      "lon": 174.9,
+      "tier": "minor",
+      "vertices": 65
+    },
+    {
+      "code": "EA",
+      "name": "Easter",
+      "lat": -24.51,
+      "lon": -113.7,
+      "tier": "minor",
+      "vertices": 64
+    },
+    {
+      "code": "EU",
+      "name": "Eurasia",
+      "lat": 65.67,
+      "lon": 22.21,
+      "tier": "major",
+      "vertices": 1131
+    },
+    {
+      "code": "FT",
+      "name": "Futuna",
+      "lat": -14.99,
+      "lon": -177.55,
+      "tier": "minor",
+      "vertices": 24
+    },
+    {
+      "code": "GP",
+      "name": "Galapagos",
+      "lat": 1.85,
+      "lon": -101.74,
+      "tier": "minor",
+      "vertices": 50
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "lat": 13.15,
+      "lon": 74.77,
+      "tier": "major",
+      "vertices": 280
+    },
+    {
+      "code": "JF",
+      "name": "Juan de Fuca",
+      "lat": 45.73,
+      "lon": -127.52,
+      "tier": "major",
+      "vertices": 96
+    },
+    {
+      "code": "JZ",
+      "name": "Juan Fernandez",
+      "lat": -33.35,
+      "lon": -111.01,
+      "tier": "minor",
+      "vertices": 41
+    },
+    {
+      "code": "KE",
+      "name": "Kermadec",
+      "lat": -33.39,
+      "lon": -179.4,
+      "tier": "minor",
+      "vertices": 97
+    },
+    {
+      "code": "MN",
+      "name": "Manus",
+      "lat": -3.52,
+      "lon": 150.61,
+      "tier": "minor",
+      "vertices": 42
+    },
+    {
+      "code": "MO",
+      "name": "Maoke",
+      "lat": -3.56,
+      "lon": 138.14,
+      "tier": "minor",
+      "vertices": 28
+    },
+    {
+      "code": "MA",
+      "name": "Mariana",
+      "lat": 17.36,
+      "lon": 144.65,
+      "tier": "minor",
+      "vertices": 76
+    },
+    {
+      "code": "MS",
+      "name": "Molucca Sea",
+      "lat": -0.87,
+      "lon": 123.97,
+      "tier": "minor",
+      "vertices": 49
+    },
+    {
+      "code": "NZ",
+      "name": "Nazca",
+      "lat": -15.75,
+      "lon": -94.69,
+      "tier": "major",
+      "vertices": 431
+    },
+    {
+      "code": "NH",
+      "name": "New Hebrides",
+      "lat": -18.14,
+      "lon": 170.23,
+      "tier": "minor",
+      "vertices": 180
+    },
+    {
+      "code": "NI",
+      "name": "Niuafo'ou",
+      "lat": -16.68,
+      "lon": -175.68,
+      "tier": "minor",
+      "vertices": 81
+    },
+    {
+      "code": "NA",
+      "name": "North America",
+      "lat": 61.91,
+      "lon": -67.15,
+      "tier": "major",
+      "vertices": 1065
+    },
+    {
+      "code": "ND",
+      "name": "North Andes",
+      "lat": 6.47,
+      "lon": -74.99,
+      "tier": "minor",
+      "vertices": 145
+    },
+    {
+      "code": "NB",
+      "name": "North Bismarck",
+      "lat": -3.2,
+      "lon": 149.86,
+      "tier": "minor",
+      "vertices": 132
+    },
+    {
+      "code": "OK",
+      "name": "Okhotsk",
+      "lat": 48.16,
+      "lon": 146.79,
+      "tier": "major",
+      "vertices": 173
+    },
+    {
+      "code": "ON",
+      "name": "Okinawa",
+      "lat": 27.45,
+      "lon": 127.72,
+      "tier": "minor",
+      "vertices": 74
+    },
+    {
+      "code": "PA",
+      "name": "Pacific",
+      "lat": -8.87,
+      "lon": -159.7,
+      "tier": "major",
+      "vertices": 1190
+    },
+    {
+      "code": "PM",
+      "name": "Panama",
+      "lat": 8.76,
+      "lon": -81.36,
+      "tier": "minor",
+      "vertices": 98
+    },
+    {
+      "code": "PS",
+      "name": "Philippine Sea",
+      "lat": 18.57,
+      "lon": 134.21,
+      "tier": "major",
+      "vertices": 217
+    },
+    {
+      "code": "RI",
+      "name": "Rivera",
+      "lat": 20.23,
+      "lon": -107.52,
+      "tier": "minor",
+      "vertices": 67
+    },
+    {
+      "code": "SW",
+      "name": "Sandwich",
+      "lat": -57.41,
+      "lon": -28.64,
+      "tier": "minor",
+      "vertices": 50
+    },
+    {
+      "code": "SC",
+      "name": "Scotia",
+      "lat": -57.81,
+      "lon": -48.36,
+      "tier": "major",
+      "vertices": 131
+    },
+    {
+      "code": "SL",
+      "name": "Shetland",
+      "lat": -61.69,
+      "lon": -58.72,
+      "tier": "minor",
+      "vertices": 24
+    },
+    {
+      "code": "SS",
+      "name": "Solomon Sea",
+      "lat": -7.44,
+      "lon": 152.08,
+      "tier": "minor",
+      "vertices": 42
+    },
+    {
+      "code": "SO",
+      "name": "Somalia",
+      "lat": -10.21,
+      "lon": 50.41,
+      "tier": "major",
+      "vertices": 479
+    },
+    {
+      "code": "SA",
+      "name": "South America",
+      "lat": -20.96,
+      "lon": -43.33,
+      "tier": "major",
+      "vertices": 606
+    },
+    {
+      "code": "SB",
+      "name": "South Bismarck",
+      "lat": -4.33,
+      "lon": 149.48,
+      "tier": "minor",
+      "vertices": 96
+    },
+    {
+      "code": "SU",
+      "name": "Sunda",
+      "lat": 5.02,
+      "lon": 113.24,
+      "tier": "major",
+      "vertices": 203
+    },
+    {
+      "code": "TI",
+      "name": "Timor",
+      "lat": -8.62,
+      "lon": 126.11,
+      "tier": "minor",
+      "vertices": 50
+    },
+    {
+      "code": "TO",
+      "name": "Tonga",
+      "lat": -18.91,
+      "lon": -174.66,
+      "tier": "minor",
+      "vertices": 101
+    },
+    {
+      "code": "WL",
+      "name": "Woodlark",
+      "lat": -7.61,
+      "lon": 149.75,
+      "tier": "minor",
+      "vertices": 140
+    },
+    {
+      "code": "YA",
+      "name": "Yangtze",
+      "lat": 27.3,
+      "lon": 118.71,
+      "tier": "major",
+      "vertices": 116
+    }
+  ]
+}

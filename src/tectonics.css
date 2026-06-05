@@ -1,0 +1,1142 @@
+.tectonics-root {
+  position: relative;
+  flex: 1;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background: #020408;
+  color: #e8f4ff;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: opacity 0.45s ease;
+}
+
+.tectonics-root--fade {
+  opacity: 0;
+}
+
+.tectonics-back-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 25;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c8dce8;
+  background: rgba(8, 16, 28, 0.9);
+  border: 1px solid rgba(100, 160, 200, 0.35);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.tectonics-back-btn:hover {
+  color: #e8f4ff;
+  background: rgba(77, 163, 255, 0.15);
+  border-color: rgba(77, 163, 255, 0.5);
+}
+
+.solar-planet-label {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(200, 220, 232, 0.75);
+  background: rgba(8, 16, 28, 0.72);
+  border: 1px solid rgba(100, 160, 200, 0.2);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.solar-planet-label--dim {
+  font-size: 0.58rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.solar-planet-label--active {
+  color: #e8f4ff;
+  background: rgba(93, 255, 184, 0.12);
+  border-color: rgba(93, 255, 184, 0.55);
+  box-shadow: 0 0 12px rgba(93, 255, 184, 0.25);
+}
+
+.solar-planet-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.15rem;
+  height: 2.15rem;
+  padding: 0 0.45rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #e8f4ff;
+  background: rgba(8, 16, 28, 0.9);
+  border: 2px solid rgba(100, 160, 200, 0.55);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.solar-planet-number:hover {
+  color: #ffffff;
+  border-color: rgba(136, 187, 255, 0.75);
+  background: rgba(20, 36, 56, 0.95);
+  transform: scale(1.06);
+}
+
+.solar-planet-number--revealed {
+  min-width: auto;
+  min-height: 2.15rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #c8dce8;
+  background: rgba(8, 16, 28, 0.94);
+  border-color: rgba(136, 187, 255, 0.6);
+}
+
+.solar-planet-number--earth {
+  border-color: rgba(93, 255, 184, 0.45);
+}
+
+.solar-planet-number--earth:hover {
+  border-color: rgba(93, 255, 184, 0.85);
+  box-shadow: 0 0 14px rgba(93, 255, 184, 0.25);
+}
+
+.solar-planet-number--earth-active {
+  color: #e8fff4;
+  background: rgba(93, 255, 184, 0.14);
+  border-color: rgba(93, 255, 184, 0.75);
+}
+
+.solar-loading {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c8dce8;
+  background: rgba(8, 16, 28, 0.92);
+  border: 1px solid rgba(100, 160, 200, 0.35);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.tectonics-error {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  background: #020408;
+  color: #e8f4ff;
+  text-align: center;
+}
+
+.tectonics-error h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ff8a8a;
+}
+
+.tectonics-error p {
+  max-width: 36rem;
+  color: #88aacc;
+}
+
+.tectonics-error button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #e8f4ff;
+  background: rgba(77, 163, 255, 0.2);
+  border: 1px solid rgba(77, 163, 255, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tectonics-hint {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  color: #88aacc;
+  background: rgba(2, 8, 16, 0.75);
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .tectonics-hint {
+    font-size: 0.72rem;
+    white-space: normal;
+    text-align: center;
+    max-width: 90vw;
+  }
+}
+
+.tectonics-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.tectonics-canvas-wrap--hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tectonics-sketchfab-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #020408;
+}
+
+.tectonics-sketchfab {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.tectonics-sketchfab__credit {
+  position: absolute;
+  right: 1rem;
+  bottom: 5.5rem;
+  z-index: 3;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.72rem;
+  color: #88aacc;
+  text-decoration: none;
+  background: rgba(8, 16, 28, 0.85);
+  border: 1px solid rgba(100, 160, 200, 0.3);
+  border-radius: 4px;
+  pointer-events: auto;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tectonics-sketchfab__credit:hover {
+  color: #e8f4ff;
+  border-color: rgba(77, 163, 255, 0.55);
+}
+
+.tectonics-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.tectonics-info-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 0 1rem 1.25rem;
+  pointer-events: none;
+  animation: tectonics-bar-in 0.25s ease-out;
+}
+
+@keyframes tectonics-bar-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tectonics-info-bar__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1.15rem;
+  background: rgba(8, 16, 28, 0.95);
+  border: 1px solid rgba(100, 160, 200, 0.35);
+  border-radius: 8px;
+  pointer-events: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.tectonics-info-bar__title {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e8f4ff;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.tectonics-info-bar__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #b8cce0;
+}
+
+.tectonics-info-bar__actions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.tectonics-info-bar__step {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #66aacc;
+}
+
+.tectonics-info-bar__close,
+.tectonics-info-bar__next,
+.tectonics-info-bar__back {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tectonics-info-bar__close {
+  color: #020408;
+  background: #88c8ff;
+}
+
+.tectonics-info-bar__close:hover {
+  background: #a8d8ff;
+}
+
+.tectonics-info-bar__next {
+  color: #020408;
+  background: #5dffb8;
+}
+
+.tectonics-info-bar__next:hover {
+  background: #7effcc;
+}
+
+.tectonics-info-bar__back {
+  color: #e8f4ff;
+  background: transparent;
+  border: 1px solid rgba(136, 200, 255, 0.45);
+}
+
+.tectonics-info-bar__back:hover {
+  background: rgba(136, 200, 255, 0.12);
+}
+
+.tectonics-info-bar__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.tectonics-canvas-wrap--transition {
+  pointer-events: none;
+}
+
+.tectonics-canvas-wrap--earth-zoom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    transparent calc(35% + var(--earth-zoom-progress, 0) * 25%),
+    rgba(2, 4, 8, calc(0.15 + var(--earth-zoom-progress, 0) * 0.45)) 100%
+  );
+  transition: opacity 0.2s ease;
+}
+
+.tectonics-canvas-wrap--earth-flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 16;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(93, 255, 184, 0.35), rgba(42, 127, 196, 0.55) 45%, rgba(2, 4, 8, 0.92) 100%);
+  animation: earth-flash-in 0.45s ease-out forwards;
+}
+
+@keyframes earth-flash-in {
+  from {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tectonics-hint--zoom {
+  color: #5dffb8;
+  border: 1px solid rgba(93, 255, 184, 0.35);
+  background: rgba(8, 20, 16, 0.85);
+}
+
+.tectonics-earth-ui {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tectonics-earth-ui--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tectonics-earth-ui--delay-1 {
+  transition-delay: 0.08s;
+}
+
+.tectonics-earth-ui--delay-2 {
+  transition-delay: 0.18s;
+}
+
+.tectonics-earth-ui--delay-3 {
+  transition-delay: 0.32s;
+}
+
+.tectonics-back-btn.tectonics-earth-ui {
+  transform: translateY(-8px);
+}
+
+.tectonics-back-btn.tectonics-earth-ui--visible {
+  transform: translateY(0);
+}
+
+.rift-diagram {
+  position: absolute;
+  inset: 3.5rem 1rem 8.25rem;
+  z-index: 18;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 1;
+  animation: rift-diagram-in 0.45s ease-out;
+}
+
+@keyframes rift-diagram-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.rift-diagram__svg {
+  width: min(94vw, 980px);
+  height: min(68vh, 650px);
+  border-radius: 12px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+.rift-diagram__block {
+  transition: transform 0.75s cubic-bezier(0.35, 0, 0.15, 1);
+}
+
+.rift-diagram--step-0 .rift-diagram__block--left-outer {
+  transform: translateX(-10px);
+}
+
+.rift-diagram--step-0 .rift-diagram__block--right-outer {
+  transform: translateX(10px);
+}
+
+.rift-diagram--step-1 .rift-diagram__block--left-outer,
+.rift-diagram--step-2 .rift-diagram__block--left-outer {
+  transform: translateX(-50px);
+}
+
+.rift-diagram--step-1 .rift-diagram__block--left-inner,
+.rift-diagram--step-2 .rift-diagram__block--left-inner {
+  transform: translate(-28px, 38px);
+}
+
+.rift-diagram--step-1 .rift-diagram__block--center,
+.rift-diagram--step-2 .rift-diagram__block--center {
+  transform: translateY(70px);
+}
+
+.rift-diagram--step-1 .rift-diagram__block--right-inner,
+.rift-diagram--step-2 .rift-diagram__block--right-inner {
+  transform: translate(28px, 38px);
+}
+
+.rift-diagram--step-1 .rift-diagram__block--right-outer,
+.rift-diagram--step-2 .rift-diagram__block--right-outer {
+  transform: translateX(50px);
+}
+
+.rift-diagram--step-2 .rift-diagram__block--left-outer {
+  transform: translateX(-72px);
+}
+
+.rift-diagram--step-2 .rift-diagram__block--right-outer {
+  transform: translateX(72px);
+}
+
+.rift-diagram--step-2 .rift-diagram__block--center {
+  transform: translateY(88px);
+}
+
+.rift-diagram__surface-line,
+.rift-diagram__faults path {
+  fill: none;
+  stroke: #1e1c1c;
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.rift-diagram__faults path {
+  stroke-width: 8;
+  opacity: 0.75;
+  transition: opacity 0.45s ease;
+}
+
+.rift-diagram--step-0 .rift-diagram__faults path {
+  opacity: 0.35;
+}
+
+.rift-diagram__magma {
+  transform-origin: 480px 585px;
+  transition: transform 0.75s cubic-bezier(0.35, 0, 0.15, 1), opacity 0.45s ease;
+}
+
+.rift-diagram--step-0 .rift-diagram__magma {
+  transform: scaleY(0.75);
+  opacity: 0.8;
+}
+
+.rift-diagram--step-1 .rift-diagram__magma {
+  transform: scaleY(0.92);
+}
+
+.rift-diagram--step-2 .rift-diagram__magma {
+  transform: scaleY(1.08);
+}
+
+.rift-diagram__convection {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 9;
+  stroke-linecap: round;
+  marker-end: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.rift-diagram--step-1 .rift-diagram__convection,
+.rift-diagram--step-2 .rift-diagram__convection {
+  opacity: 0.95;
+  stroke-dasharray: 18 14;
+  animation: rift-flow 1.2s linear infinite;
+}
+
+@keyframes rift-flow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+.rift-diagram__magma-label,
+.rift-diagram__labels text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  fill: #242020;
+}
+
+.rift-diagram__labels line {
+  stroke: #262020;
+  stroke-width: 3;
+}
+
+.rift-diagram__lava {
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.rift-diagram--step-2 .rift-diagram__lava {
+  opacity: 1;
+}
+
+.rift-diagram__lava-conduit {
+  fill: none;
+  stroke: #ef1d1d;
+  stroke-width: 36;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px rgba(239, 29, 29, 0.5));
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.35, 0, 0.15, 1);
+}
+
+.rift-diagram__lava-conduit--side {
+  stroke-width: 26;
+}
+
+.rift-diagram--step-2 .rift-diagram__lava-conduit {
+  stroke-dashoffset: 0;
+}
+
+.rift-diagram__lava-flow {
+  fill: #ef1d1d;
+  stroke: #6b0b0b;
+  stroke-width: 3;
+  transform-origin: 470px 230px;
+  transform: scale(0.55);
+  transition: transform 0.8s cubic-bezier(0.35, 0, 0.15, 1);
+}
+
+.rift-diagram--step-2 .rift-diagram__lava-flow {
+  transform: scale(1);
+}
+
+.rift-diagram__arrows path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.45s ease, transform 0.75s cubic-bezier(0.35, 0, 0.15, 1);
+}
+
+.rift-diagram__side-arrow {
+  stroke: #fff;
+  stroke-width: 28;
+  filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.25));
+}
+
+.rift-diagram__down-arrow {
+  stroke: #1d1c1c;
+  stroke-width: 12;
+  opacity: 0;
+}
+
+.rift-diagram--step-1 .rift-diagram__down-arrow,
+.rift-diagram--step-2 .rift-diagram__down-arrow {
+  opacity: 1;
+  transform: translateY(18px);
+}
+
+.rift-diagram--step-0 .rift-diagram__side-arrow--left {
+  transform: translateX(20px);
+}
+
+.rift-diagram--step-0 .rift-diagram__side-arrow--right {
+  transform: translateX(-20px);
+}
+
+.rift-diagram--step-1 .rift-diagram__side-arrow--left,
+.rift-diagram--step-2 .rift-diagram__side-arrow--left {
+  transform: translateX(-28px);
+}
+
+.rift-diagram--step-1 .rift-diagram__side-arrow--right,
+.rift-diagram--step-2 .rift-diagram__side-arrow--right {
+  transform: translateX(28px);
+}
+
+@media (max-width: 700px) {
+  .rift-diagram {
+    inset: 4rem 0.35rem 10.5rem;
+  }
+
+  .rift-diagram__svg {
+    height: min(60vh, 520px);
+  }
+
+  .rift-diagram__magma-label,
+  .rift-diagram__labels text {
+    font-size: 24px;
+  }
+}
+
+.tectonics-topic-list {
+  position: absolute;
+  top: 3.25rem;
+  left: 1rem;
+  z-index: 25;
+  width: min(12rem, 42vw);
+  max-height: min(16rem, 50vh);
+  overflow-y: auto;
+  padding: 0.65rem 0.5rem;
+  background: rgba(8, 16, 28, 0.92);
+  border: 1px solid rgba(100, 160, 200, 0.3);
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.tectonics-topic-list__heading {
+  margin: 0 0 0.5rem;
+  padding: 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #66aacc;
+}
+
+.tectonics-topic-list__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tectonics-topic-list__btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+  padding: 0.45rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  text-align: left;
+  color: #c8dce8;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.tectonics-topic-list__btn:hover {
+  background: rgba(77, 163, 255, 0.12);
+  border-color: rgba(77, 163, 255, 0.35);
+}
+
+.tectonics-topic-list__btn--active {
+  color: #e8f4ff;
+  background: rgba(93, 255, 184, 0.12);
+  border-color: rgba(93, 255, 184, 0.45);
+}
+
+.tectonics-topic-list__name {
+  line-height: 1.3;
+}
+
+.rift-label {
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tectonics-topic-list__badge {
+  flex-shrink: 0;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #020408;
+  background: #5dffb8;
+  border-radius: 3px;
+}
+
+.tectonic-control {
+  position: absolute;
+  top: 4.5rem;
+  left: 1rem;
+  z-index: 28;
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: calc(100svh - 6rem);
+  overflow: auto;
+  background: rgba(196, 228, 248, 0.92);
+  border: 1px solid rgba(120, 170, 210, 0.55);
+  border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  color: #1a3348;
+}
+
+.tectonic-control__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(120, 170, 210, 0.45);
+}
+
+.tectonic-control__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #173247;
+}
+
+.tectonic-control__eye {
+  font-size: 0.85rem;
+  color: #2f6ea1;
+}
+
+.tectonic-control__close {
+  margin: 0;
+  padding: 0.1rem 0.45rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #2f5570;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.tectonic-control__close:hover {
+  color: #102030;
+}
+
+.tectonic-control__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0;
+}
+
+.tectonic-control__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #173247;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.tectonic-control__item:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.tectonic-control__item--active {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 3px 0 0 #2f6ea1;
+  animation: tectonic-item-pulse 0.55s ease-out;
+}
+
+@keyframes tectonic-item-pulse {
+  from {
+    background: rgba(47, 110, 161, 0.18);
+  }
+  to {
+    background: rgba(255, 255, 255, 0.72);
+  }
+}
+
+.tectonic-control__icon {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+}
+
+.tectonic-control__icon--line {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 2px;
+}
+
+.tectonic-control__icon--dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+}
+
+.tectonic-control__icon--zone {
+  width: 1rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+
+.tectonic-control__icon--dash {
+  width: 0.9rem;
+  height: 0;
+  margin-top: 0.35rem;
+  border-top: 2px dashed #ffffff;
+  background: transparent;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+}
+
+.tectonic-control__label {
+  flex: 1;
+}
+
+.tectonic-control__source {
+  margin: 0;
+  padding: 0.45rem 0.65rem 0.55rem;
+  font-size: 0.62rem;
+  line-height: 1.35;
+  color: #4a667a;
+  border-top: 1px solid rgba(120, 170, 210, 0.35);
+}
+
+.plate-label {
+  display: inline-block;
+  padding: 0.14rem 0.42rem;
+  font-family: inherit;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e6f2fa;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  background: rgba(6, 18, 32, 0.78);
+  border: 1px solid rgba(110, 165, 205, 0.42);
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.plate-label--major {
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: #f3f9ff;
+  border-color: rgba(130, 190, 230, 0.55);
+}
+
+.plate-label--minor {
+  font-size: 0.5rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .tectonic-control {
+    top: auto;
+    bottom: 1rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: 42svh;
+  }
+}
+
+/* Pure 2D HTML dots on the globe (not 3D meshes) */
+.earth-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 0;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: #4da3ff;
+  box-shadow: 0 0 6px rgba(77, 163, 255, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.earth-dot:hover {
+  transform: scale(1.25);
+}
+
+.earth-dot--selected {
+  width: 9px;
+  height: 9px;
+  background: #5dffb8;
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(93, 255, 184, 0.8);
+}
+
+.earth-layer-hotspot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.2rem 0.45rem 0.2rem 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(8, 16, 28, 0.82);
+  color: #e8f4ff;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(6px);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.earth-layer-hotspot:hover,
+.earth-layer-hotspot--active {
+  transform: scale(1.05);
+  border-color: var(--layer-color, #5dffb8);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--layer-color, #5dffb8) 55%, transparent);
+}
+
+.earth-layer-hotspot__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--layer-color, #5dffb8);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--layer-color, #5dffb8) 70%, transparent);
+}
+
+.earth-layer-hotspot__label {
+  white-space: nowrap;
+}
+
+.layer-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(2, 8, 16, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.layer-dialog__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.layer-dialog__popup {
+  position: relative;
+  width: min(100%, 28rem);
+  padding: 1.25rem 1.25rem 1rem;
+  pointer-events: auto;
+  background: rgba(8, 16, 28, 0.98);
+  border: 1px solid rgba(100, 160, 200, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  animation: tectonics-bar-in 0.25s ease-out;
+}
+
+.layer-dialog__swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-bottom: 0.55rem;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.layer-dialog__depth {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #88aacc;
+}
+
+.layer-dialog__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #e8f4ff;
+}
+
+.layer-dialog__description {
+  margin: 0 0 0.85rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #c8dce8;
+}
+
+.layer-dialog__fact {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #d8e8f4;
+  background: rgba(77, 163, 255, 0.08);
+  border-left: 3px solid #4da3ff;
+  border-radius: 0 6px 6px 0;
+}
+
+.layer-dialog__fact-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4da3ff;
+}
+
+.layer-dialog__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.5rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(100, 160, 200, 0.45);
+  border-radius: 6px;
+  background: rgba(77, 163, 255, 0.12);
+  color: #e8f4ff;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.layer-dialog__close:hover {
+  background: rgba(77, 163, 255, 0.22);
+  border-color: rgba(77, 163, 255, 0.65);
+}
