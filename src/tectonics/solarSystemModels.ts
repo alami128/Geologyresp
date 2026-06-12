@@ -1,5 +1,5 @@
 export const SOLAR_SYSTEM_MODEL = '/models/solar_system_animation.glb'
-export const EARTHS_INTERIOR_MODEL = '/models/earths_interior.glb'
+export { EARTH_INTERIOR_MODEL as EARTHS_INTERIOR_MODEL, EARTH_INTERIOR_SETTINGS as EARTHS_INTERIOR_SETTINGS } from './earthInteriorModel'
 
 /** Earth node names in the solar system GLB (Sketchfab typo: "erath") */
 export const SOLAR_EARTH_NODE_NAMES = ['erath_8', 'Object_11', 'Object_40']
@@ -49,13 +49,6 @@ export const SOLAR_SYSTEM_SETTINGS = {
   earthZoomDistance: 1.05,
   earthZoomFov: 28,
   earthZoomFlashMs: 450,
-}
-
-export const EARTHS_INTERIOR_SETTINGS = {
-  scale: 0.55,
-  camera: [0, 0.8, 5] as [number, number, number],
-  minDistance: 1.5,
-  maxDistance: 18,
 }
 
 export function isSolarEarthObject(name: string): boolean {

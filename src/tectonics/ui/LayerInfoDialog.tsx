@@ -7,6 +7,8 @@ type LayerInfoDialogProps = {
 }
 
 export function LayerInfoDialog({ layer, onClose }: LayerInfoDialogProps) {
+  const title = layer?.state ? `${layer.title} (${layer.state})` : layer?.title
+
   return (
     <Dialog.Root
       open={layer !== null}
@@ -26,15 +28,15 @@ export function LayerInfoDialog({ layer, onClose }: LayerInfoDialogProps) {
                   aria-hidden="true"
                 />
                 <p className="layer-dialog__depth">{layer.depth}</p>
-                <Dialog.Title className="layer-dialog__title">{layer.title}</Dialog.Title>
+                <Dialog.Title className="layer-dialog__title">{title}</Dialog.Title>
                 <Dialog.Description className="layer-dialog__description">
                   {layer.description}
                 </Dialog.Description>
                 <p className="layer-dialog__fact">
-                  <span className="layer-dialog__fact-label">Did you know?</span>
+                  <span className="layer-dialog__fact-label">Le saviez-vous ?</span>
                   {layer.fact}
                 </p>
-                <Dialog.Close className="layer-dialog__close">Close</Dialog.Close>
+                <Dialog.Close className="layer-dialog__close">Fermer</Dialog.Close>
               </>
             ) : null}
           </Dialog.Popup>

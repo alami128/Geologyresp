@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { getTopicById } from './earthTopics'
 import {
   DETAIL_HINTS,
@@ -8,9 +8,17 @@ import {
   getDetailSteps,
   topicHasDetail,
 } from './topicDetail'
+import { createInitialMantleFlowState, type MantleFlowId } from './mantleConvectionModel'
 import { createInitialLayerState, type TectonicLayerId } from './tectonicLayers'
+import {
+  resolveDiagramLayerId,
+  type EarthDiagramLayerId,
+  type EarthLayerInfo,
+} from './earthStructureLayers'
 import { TectonicsScene, type AppView } from './TectonicsScene'
+import { EarthInteriorPanel } from './ui/EarthInteriorPanel'
 import { GlobeInfoBar, InfoBar } from './ui/InfoBar'
+import { MantleConvectionPanel } from './ui/MantleConvectionPanel'
 import { TectonicControlPanel } from './ui/TectonicControlPanel'
 import { TopicList } from './ui/TopicList'
 
@@ -29,11 +37,27 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
   const [detailStep, setDetailStep] = useState(0)
   const [activeTectonicLayers, setActiveTectonicLayers] = useState(createInitialLayerState)
   const [layerAnimKeys, setLayerAnimKeys] = useState<Partial<Record<TectonicLayerId, number>>>({})
+  const [selectedEarthLayerId, setSelectedEarthLayerId] = useState<EarthDiagramLayerId | null>(null)
+  const [earthInteriorAnimKey, setEarthInteriorAnimKey] = useState(0)
+  const [activeMantleFlows, setActiveMantleFlows] = useState(createInitialMantleFlowState)
+  const [mantleFlowAnimKeys, setMantleFlowAnimKeys] = useState<Partial<Record<MantleFlowId, number>>>({})
+
+  useEffect(() => {
+    if (!selectedEarthLayerId) return
+    const resolved = resolveDiagramLayerId(selectedEarthLayerId)
+    if (!resolved) {
+      setSelectedEarthLayerId(null)
+    } else if (resolved !== selectedEarthLayerId) {
+      setSelectedEarthLayerId(resolved)
+    }
+  }, [selectedEarthLayerId])
 
   const topic = getTopicById(selectedId)
   const detailId = getDetailId(selectedId)
   const inModelDetail = view === 'model-detail'
   const inTectonicPlates = inModelDetail && detailId === 'rift'
+  const inEarthInterior = inModelDetail && detailId === 'earth-structure'
+  const inMantleConvection = inModelDetail && detailId === 'mantle-convection'
   const detailSteps = detailId ? getDetailSteps(detailId) : []
   const detailStepCount = detailId ? getDetailStepCount(detailId) : 0
 
@@ -56,8 +80,34 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
       setActiveTectonicLayers(createInitialLayerState())
       setLayerAnimKeys({})
     }
+    if (getDetailId(selectedId) === 'earth-structure') {
+      setSelectedEarthLayerId(null)
+      setEarthInteriorAnimKey((key) => key + 1)
+    }
+    if (getDetailId(selectedId) === 'mantle-convection') {
+      setActiveMantleFlows(createInitialMantleFlowState())
+      setMantleFlowAnimKeys({})
+    }
     startTransition('model-detail')
   }, [selectedId, startTransition])
+
+  const handlePlayEarthAnimation = useCallback(() => {
+    setEarthInteriorAnimKey((key) => key + 1)
+  }, [])
+
+  const handleEarthLayerSelect = useCallback((layer: EarthLayerInfo) => {
+    setSelectedEarthLayerId(layer.id)
+  }, [])
+
+  const toggleMantleFlow = useCallback((id: MantleFlowId) => {
+    setActiveMantleFlows((current) => {
+      const next = !current[id]
+      if (next) {
+        setMantleFlowAnimKeys((keys) => ({ ...keys, [id]: (keys[id] ?? 0) + 1 }))
+      }
+      return { ...current, [id]: next }
+    })
+  }, [])
 
   const toggleTectonicLayer = useCallback((id: TectonicLayerId) => {
     setActiveTectonicLayers((current) => {
@@ -84,6 +134,7 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
   const exitModelDetail = useCallback(() => {
     startTransition('globe')
     setDetailStep(0)
+    setSelectedEarthLayerId(null)
   }, [startTransition])
 
   const handleClose = useCallback(() => {
@@ -141,6 +192,25 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
         />
       ) : null}
 
+      {inEarthInterior ? (
+        <EarthInteriorPanel
+          selectedLayerId={selectedEarthLayerId}
+          onSelect={handleEarthLayerSelect}
+          onPlayAnimation={handlePlayEarthAnimation}
+          onClose={handleBack}
+          className={`tectonics-earth-ui${ready ? ' tectonics-earth-ui--visible' : ''}`}
+        />
+      ) : null}
+
+      {inMantleConvection ? (
+        <MantleConvectionPanel
+          activeFlows={activeMantleFlows}
+          onToggle={toggleMantleFlow}
+          onClose={handleBack}
+          className={`tectonics-earth-ui${ready ? ' tectonics-earth-ui--visible' : ''}`}
+        />
+      ) : null}
+
       <div
         className={`tectonics-canvas-wrap tectonics-earth-ui tectonics-earth-ui--delay-2${ready ? ' tectonics-earth-ui--visible' : ''}${transitioning ? ' tectonics-canvas-wrap--transition' : ''}`}
       >
@@ -160,6 +230,11 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
             detailId={detailId}
             activeTectonicLayers={activeTectonicLayers}
             layerAnimKeys={layerAnimKeys}
+            selectedEarthLayerId={selectedEarthLayerId}
+            earthInteriorAnimKey={earthInteriorAnimKey}
+            activeMantleFlows={activeMantleFlows}
+            mantleFlowAnimKeys={mantleFlowAnimKeys}
+            onEarthLayerSelect={handleEarthLayerSelect}
             onSelectTopic={handleSelectTopic}
             onDeselect={() => setSelectedId(null)}
           />
@@ -183,7 +258,7 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
         />
       ) : null}
 
-      {inModelDetail && detailSteps.length > 0 && !inTectonicPlates ? (
+      {inModelDetail && detailSteps.length > 0 && !inTectonicPlates && !inEarthInterior && !inMantleConvection ? (
         <InfoBar
           title={detailSteps[detailStep].title}
           description={detailSteps[detailStep].description}
@@ -193,6 +268,24 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
           nextLabel={detailStep < detailStepCount - 1 ? 'Next' : 'Done'}
           onBack={handleBack}
           onNext={handleNext}
+        />
+      ) : null}
+
+      {inEarthInterior ? (
+        <InfoBar
+          title="Intérieur de la Terre"
+          description="Coupe animée — les enveloppes se séparent automatiquement. Cliquez une couche sur le schéma ou le modèle 3D."
+          showBack
+          onBack={handleBack}
+        />
+      ) : null}
+
+      {inMantleConvection ? (
+        <InfoBar
+          title="Convection mantellique"
+          description="Les courants chauds montent, refroidissent sous la lithosphère, puis plongent en subduction. Activez les flux dans le panneau."
+          showBack
+          onBack={handleBack}
         />
       ) : null}
     </>

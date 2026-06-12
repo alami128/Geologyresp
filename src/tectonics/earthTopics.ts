@@ -13,13 +13,23 @@ export type EarthTopic = {
 export const EARTH_TOPICS: EarthTopic[] = [
   {
     id: 'midatlantic',
-    name: "Earth's interior",
-    lat: 10,
-    lon: -30,
-    title: "Earth's interior",
+    name: "Intérieur de la Terre",
+    lat: 25,
+    lon: -40,
+    title: "Intérieur de la Terre",
     description:
-      'Explore Earth’s layers in an interactive 3D model — crust, mantle, and core — hosted on Sketchfab.',
+      'Coupe animée des enveloppes terrestres — croûte, manteau, noyau liquide et graine solide, comme sur un schéma géologique.',
     detailId: 'earth-structure',
+  },
+  {
+    id: 'mantle_convection',
+    name: 'Convection mantellique',
+    lat: 18,
+    lon: -32,
+    title: 'Convection mantellique',
+    description:
+      'Courants de roche chaude dans le manteau — remontée au centre, cellules de convection et subduction des plaques.',
+    detailId: 'mantle-convection',
   },
   {
     id: 'pacific',
@@ -60,8 +70,8 @@ export const EARTH_TOPICS: EarthTopic[] = [
   {
     id: 'east_africa',
     name: 'Tectonic plates',
-    lat: 10,
-    lon: -30,
+    lat: -3,
+    lon: 37,
     title: 'Tectonic plates',
     description:
       'Toggle plate boundaries, volcanoes, and seismic zones on the globe using the Control menu.',
