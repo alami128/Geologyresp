@@ -18,10 +18,10 @@ export class AppErrorBoundary extends Component<Props, State> {
     if (this.state.error) {
       return (
         <div className="tectonics-error">
-          <h1>Something went wrong</h1>
+          <h1>Une erreur s’est produite</h1>
           <p>{this.state.error.message}</p>
           <button type="button" onClick={() => window.location.reload()}>
-            Reload page
+            Recharger la page
           </button>
         </div>
       )

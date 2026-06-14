@@ -1,9 +1,9 @@
 {
-  "source": "PB2002 plates (Bird 2003)",
+  "source": "Plaques PB2002 (Bird 2003)",
   "plates": [
     {
       "code": "AS",
-      "name": "Aegean Sea",
+      "name": "Mer Égée",
       "lat": 37.18,
       "lon": 25.41,
       "tier": "minor",
@@ -11,7 +11,7 @@
     },
     {
       "code": "AF",
-      "name": "Africa",
+      "name": "Afrique",
       "lat": 4.02,
       "lon": -4.01,
       "tier": "major",
@@ -27,7 +27,7 @@
     },
     {
       "code": "AM",
-      "name": "Amur",
+      "name": "Amour",
       "lat": 43.75,
       "lon": 126.85,
       "tier": "major",
@@ -35,7 +35,7 @@
     },
     {
       "code": "AT",
-      "name": "Anatolia",
+      "name": "Anatolie",
       "lat": 38.3,
       "lon": 32.66,
       "tier": "minor",
@@ -43,7 +43,7 @@
     },
     {
       "code": "AN",
-      "name": "Antarctica",
+      "name": "Antarctique",
       "lat": -82.03,
       "lon": 60.96,
       "tier": "major",
@@ -51,7 +51,7 @@
     },
     {
       "code": "AR",
-      "name": "Arabia",
+      "name": "Arabie",
       "lat": 20.79,
       "lon": 48.75,
       "tier": "major",
@@ -59,7 +59,7 @@
     },
     {
       "code": "AU",
-      "name": "Australia",
+      "name": "Australie",
       "lat": -30.57,
       "lon": 141.9,
       "tier": "major",
@@ -67,7 +67,7 @@
     },
     {
       "code": "BR",
-      "name": "Balmoral Reef",
+      "name": "Récif Balmoral",
       "lat": -15.44,
       "lon": 176.04,
       "tier": "minor",
@@ -75,7 +75,7 @@
     },
     {
       "code": "BS",
-      "name": "Banda Sea",
+      "name": "Mer de Banda",
       "lat": -4.65,
       "lon": 125.83,
       "tier": "minor",
@@ -83,7 +83,7 @@
     },
     {
       "code": "BH",
-      "name": "Birds Head",
+      "name": "Péninsule de Cendrawasih",
       "lat": -1.12,
       "lon": 132.42,
       "tier": "minor",
@@ -91,7 +91,7 @@
     },
     {
       "code": "BU",
-      "name": "Burma",
+      "name": "Birmanie",
       "lat": 8.96,
       "lon": 94.19,
       "tier": "minor",
@@ -99,7 +99,7 @@
     },
     {
       "code": "CA",
-      "name": "Caribbean",
+      "name": "Caraïbes",
       "lat": 13.89,
       "lon": -73.8,
       "tier": "major",
@@ -123,7 +123,7 @@
     },
     {
       "code": "CR",
-      "name": "Conway Reef",
+      "name": "Récif Conway",
       "lat": -18.92,
       "lon": 174.9,
       "tier": "minor",
@@ -131,7 +131,7 @@
     },
     {
       "code": "EA",
-      "name": "Easter",
+      "name": "Pâques",
       "lat": -24.51,
       "lon": -113.7,
       "tier": "minor",
@@ -139,7 +139,7 @@
     },
     {
       "code": "EU",
-      "name": "Eurasia",
+      "name": "Eurasie",
       "lat": 65.67,
       "lon": 22.21,
       "tier": "major",
@@ -155,7 +155,7 @@
     },
     {
       "code": "GP",
-      "name": "Galapagos",
+      "name": "Galápagos",
       "lat": 1.85,
       "lon": -101.74,
       "tier": "minor",
@@ -163,7 +163,7 @@
     },
     {
       "code": "IN",
-      "name": "India",
+      "name": "Inde",
       "lat": 13.15,
       "lon": 74.77,
       "tier": "major",
@@ -179,7 +179,7 @@
     },
     {
       "code": "JZ",
-      "name": "Juan Fernandez",
+      "name": "Juan Fernández",
       "lat": -33.35,
       "lon": -111.01,
       "tier": "minor",
@@ -211,7 +211,7 @@
     },
     {
       "code": "MA",
-      "name": "Mariana",
+      "name": "Mariannes",
       "lat": 17.36,
       "lon": 144.65,
       "tier": "minor",
@@ -219,7 +219,7 @@
     },
     {
       "code": "MS",
-      "name": "Molucca Sea",
+      "name": "Mer des Moluques",
       "lat": -0.87,
       "lon": 123.97,
       "tier": "minor",
@@ -235,7 +235,7 @@
     },
     {
       "code": "NH",
-      "name": "New Hebrides",
+      "name": "Nouvelles-Hébrides",
       "lat": -18.14,
       "lon": 170.23,
       "tier": "minor",
@@ -251,7 +251,7 @@
     },
     {
       "code": "NA",
-      "name": "North America",
+      "name": "Amérique du Nord",
       "lat": 61.91,
       "lon": -67.15,
       "tier": "major",
@@ -259,7 +259,7 @@
     },
     {
       "code": "ND",
-      "name": "North Andes",
+      "name": "Andes du Nord",
       "lat": 6.47,
       "lon": -74.99,
       "tier": "minor",
@@ -267,7 +267,7 @@
     },
     {
       "code": "NB",
-      "name": "North Bismarck",
+      "name": "Bismarck Nord",
       "lat": -3.2,
       "lon": 149.86,
       "tier": "minor",
@@ -291,7 +291,7 @@
     },
     {
       "code": "PA",
-      "name": "Pacific",
+      "name": "Pacifique",
       "lat": -8.87,
       "lon": -159.7,
       "tier": "major",
@@ -307,7 +307,7 @@
     },
     {
       "code": "PS",
-      "name": "Philippine Sea",
+      "name": "Mer des Philippines",
       "lat": 18.57,
       "lon": 134.21,
       "tier": "major",
@@ -347,7 +347,7 @@
     },
     {
       "code": "SS",
-      "name": "Solomon Sea",
+      "name": "Mer des Salomon",
       "lat": -7.44,
       "lon": 152.08,
       "tier": "minor",
@@ -355,7 +355,7 @@
     },
     {
       "code": "SO",
-      "name": "Somalia",
+      "name": "Somalie",
       "lat": -10.21,
       "lon": 50.41,
       "tier": "major",
@@ -363,7 +363,7 @@
     },
     {
       "code": "SA",
-      "name": "South America",
+      "name": "Amérique du Sud",
       "lat": -20.96,
       "lon": -43.33,
       "tier": "major",
@@ -371,7 +371,7 @@
     },
     {
       "code": "SB",
-      "name": "South Bismarck",
+      "name": "Bismarck Sud",
       "lat": -4.33,
       "lon": 149.48,
       "tier": "minor",
@@ -411,7 +411,7 @@
     },
     {
       "code": "YA",
-      "name": "Yangtze",
+      "name": "Yangtsé",
       "lat": 27.3,
       "lon": 118.71,
       "tier": "major",

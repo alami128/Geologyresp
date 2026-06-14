@@ -154,7 +154,7 @@ function LayerHotspots({
               type="button"
               className={`earth-layer-hotspot${active ? ' earth-layer-hotspot--active' : ''}`}
               style={{ '--layer-color': layer.color } as CSSProperties}
-              aria-label={`Learn about the ${layer.title}`}
+              aria-label={`En savoir plus sur ${layer.title}`}
               onPointerEnter={() => onLayerHover(layer.id)}
               onPointerLeave={() => onLayerHover(null)}
               onClick={(event) => {

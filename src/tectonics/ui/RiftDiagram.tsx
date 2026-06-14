@@ -109,12 +109,12 @@ export function RiftDiagram({ step }: RiftDiagramProps) {
         </g>
 
         <g className="rift-diagram__labels">
-          <text x="742" y="92">Fault</text>
-          <text x="358" y="91">Lava flow</text>
-          <text x="604" y="70">Lava conduit</text>
-          <text x="678" y="407">Continental crust</text>
-          <text x="210" y="470" transform="rotate(72 210 470)">Fault</text>
-          <text x="784" y="474" transform="rotate(-72 784 474)">Fault</text>
+          <text x="742" y="92">Faille</text>
+          <text x="358" y="91">Coulée de lave</text>
+          <text x="604" y="70">Conduit de lave</text>
+          <text x="678" y="407">Croûte continentale</text>
+          <text x="210" y="470" transform="rotate(72 210 470)">Faille</text>
+          <text x="784" y="474" transform="rotate(-72 784 474)">Faille</text>
           <line x1="710" y1="96" x2="724" y2="190" />
           <line x1="414" y1="100" x2="448" y2="190" />
           <line x1="630" y1="78" x2="530" y2="202" />

@@ -29,52 +29,54 @@ const LAYER_META: Record<
   Omit<TectonicLayerDef, 'paths' | 'points' | 'id'>
 > = {
   'plate-boundaries': {
-    label: 'Plate boundaries',
+    label: 'Limites des plaques',
     color: '#ffffff',
     kind: 'outline',
-    scienceNote: 'All plate edges (PB2002) — white animated dashes separate each plate',
+    scienceNote:
+      'Tous les bords de plaques (PB2002) — tirets blancs animés séparant chaque plaque',
   },
   divergent: {
-    label: 'Tectonic plates diverge',
+    label: 'Les plaques tectoniques divergent',
     color: '#5ce1ff',
     kind: 'line',
-    scienceNote: 'Oceanic spreading ridges (OSR) and continental rifts (CRB), PB2002',
+    scienceNote: 'Dorsales océaniques (OSR) et rifts continentaux (CRB), PB2002',
   },
   'converge-ocean-continental': {
-    label: 'Tectonic plates converge, oceanic plate subducts under continental plate',
+    label: 'Convergence océan–continent (subduction)',
     color: '#e03030',
     kind: 'line',
-    scienceNote: 'Ocean–continent subduction zones (OCB/SUB), PB2002',
+    scienceNote: 'Zones de subduction océan–continent (OCB/SUB), PB2002',
   },
   'converge-ocean-ocean': {
-    label: 'Tectonic plates converge, oceanic plate subducts under oceanic plate',
+    label: 'Convergence océan–océan (subduction)',
     color: '#9b59d4',
     kind: 'line',
-    scienceNote: 'Ocean–ocean subduction zones (OCB/SUB), PB2002',
+    scienceNote: 'Zones de subduction océan–océan (OCB/SUB), PB2002',
   },
   'converge-continental': {
-    label: 'Continental plates converge',
+    label: 'Les plaques continentales convergent',
     color: '#3ecf6e',
     kind: 'line',
-    scienceNote: 'Continental collision zones (CCB), e.g. Himalaya and Alps, PB2002',
+    scienceNote: 'Zones de collision continentale (CCB), ex. Himalaya et Alpes, PB2002',
   },
   transform: {
-    label: 'Plates slide past each other',
+    label: 'Les plaques glissent l’une contre l’autre',
     color: '#f5d547',
     kind: 'line',
-    scienceNote: 'Oceanic and continental transform faults (OTF/CTF), PB2002',
+    scienceNote: 'Failles transformantes océaniques et continentales (OTF/CTF), PB2002',
   },
   volcanoes: {
-    label: 'Volcanoes',
+    label: 'Volcans',
     color: '#ff2a2a',
     kind: 'point',
-    scienceNote: 'Major Holocene volcanoes (Smithsonian GVP coordinates)',
+    scienceNote: 'Volcans holocènes majeurs (coordonnées Smithsonian GVP)',
   },
   seismic: {
-    label: 'Seismic hazard',
+    label: 'Risque sismique',
     color: '#c9955c',
     kind: 'zone',
-    scienceNote: 'High-strain plate margins derived from PB2002 subduction and transform arcs',
+    scienceNote:
+      'Marges de plaques à forte déformation (arcs de subduction et transformantes PB2002)',
   },
 }
 

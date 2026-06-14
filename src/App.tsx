@@ -169,7 +169,7 @@ function App() {
 
     if (micEnabled) {
       startMic().catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : 'Microphone error'
+        const message = err instanceof Error ? err.message : 'Erreur du microphone'
         setMicError(message)
         setMicEnabled(false)
       })
@@ -198,14 +198,14 @@ function App() {
             aria-expanded={showBrief}
             aria-controls="student-brief"
           >
-            Project brief
+            Brief du projet
           </Button>
           <Button
             type="button"
             className="cursor-pointer border-2 border-[var(--border)] bg-[var(--accent)] px-3 py-2 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--accent-contrast)] transition-transform hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px]"
             onClick={resetControls}
           >
-            Reset sliders
+            Réinitialiser les curseurs
           </Button>
 
           <Button
@@ -214,7 +214,7 @@ function App() {
             onClick={() => setMicEnabled((v) => !v)}
             aria-pressed={micEnabled}
           >
-            {micEnabled ? 'Mic on' : 'Mic off'}
+            {micEnabled ? 'Micro activé' : 'Micro désactivé'}
           </Button>
           <Button
             type="button"
@@ -222,29 +222,37 @@ function App() {
             onClick={() => setCamEnabled(!camEnabled)}
             aria-pressed={camEnabled}
           >
-            {camEnabled ? 'Cam on' : 'Cam off'}
+            {camEnabled ? 'Caméra activée' : 'Caméra désactivée'}
           </Button>
           <div className="min-w-[10rem] font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-h)]">
             <div>
-              Level: <span className="tabular-nums">{micLevel.toFixed(3)}</span>
+              Niveau : <span className="tabular-nums">{micLevel.toFixed(3)}</span>
             </div>
             <div>
-              Clap:{" "}
+              Claquement :{' '}
               <span className="tabular-nums">
-                {lastClapMsAgo === null ? '—' : `${lastClapMsAgo}ms`}
+                {lastClapMsAgo === null ? '—' : `${lastClapMsAgo} ms`}
               </span>
             </div>
           </div>
           <div className="min-w-[9rem] font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-h)]">
             <div>
-              Hand:{' '}
+              Main :{' '}
               <span className="tabular-nums">
-                {camEnabled ? (camHasHand ? 'yes' : 'no') : '—'}
+                {camEnabled ? (camHasHand ? 'oui' : 'non') : '—'}
               </span>
             </div>
             <div>
-              Gesture:{' '}
-              <span className="tabular-nums">{camEnabled ? camGesture : '—'}</span>
+              Geste :{' '}
+              <span className="tabular-nums">
+                {camEnabled
+                  ? camGesture === 'none'
+                    ? 'aucun'
+                    : camGesture === 'open'
+                      ? 'ouvert'
+                      : 'pointeur'
+                  : '—'}
+              </span>
             </div>
           </div>
 
@@ -256,7 +264,7 @@ function App() {
               <video
                 ref={camVideoRef}
                 className="h-full w-full object-cover"
-                aria-label="Webcam preview"
+                aria-label="Aperçu de la webcam"
               />
               {camMovementActive ? (
                 <div
@@ -284,25 +292,25 @@ function App() {
             <div
               id="student-brief"
               role="dialog"
-              aria-label="Project brief"
+              aria-label="Brief du projet"
               className="absolute right-0 top-full z-10 mt-2 w-[min(30rem,92vw)] border-2 border-[var(--border)] bg-[var(--surface)] p-3 shadow-[var(--shadow-hard)]"
             >
               <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--text-h)]">
-                Project brief
+                Brief du projet
               </p>
               <ul className="mb-3 list-disc space-y-1 pl-5 text-sm leading-relaxed">
-                <li>Swap the cube for your own geometry, models, or particle systems.</li>
-                <li>Map sliders to your own visual rules and animation logic.</li>
-                <li>Make visuals react to inputs like keyboard, mic, camera, or time.</li>
-                <li>Design a mood and style: color, motion, composition, and rhythm.</li>
-                <li>Treat this as a base, not a final piece: personalize it heavily.</li>
+                <li>Remplacez le cube par votre propre géométrie, modèles ou systèmes de particules.</li>
+                <li>Reliez les curseurs à vos propres règles visuelles et logique d’animation.</li>
+                <li>Faites réagir les visuels au clavier, au micro, à la caméra ou au temps.</li>
+                <li>Définissez une ambiance : couleur, mouvement, composition et rythme.</li>
+                <li>Considérez ceci comme une base à personnaliser, pas une œuvre finie.</li>
               </ul>
               <Button
                 type="button"
                 className="cursor-pointer border-2 border-[var(--border)] bg-transparent px-2 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-h)]"
                 onClick={() => setShowBrief(false)}
               >
-                Close
+                Fermer
               </Button>
             </div>
           ) : null}
@@ -310,12 +318,12 @@ function App() {
       </header>
       {micError ? (
         <div className="border-2 border-[var(--border)] bg-[var(--surface)] p-3 font-mono text-xs font-semibold text-[var(--text-h)] shadow-[var(--shadow-hard)]">
-          Mic error: <span className="font-mono">{micError}</span>
+          Erreur micro : <span className="font-mono">{micError}</span>
         </div>
       ) : null}
       {camError ? (
         <div className="border-2 border-[var(--border)] bg-[var(--surface)] p-3 font-mono text-xs font-semibold text-[var(--text-h)] shadow-[var(--shadow-hard)]">
-          Camera error: <span className="font-mono">{camError}</span>
+          Erreur caméra : <span className="font-mono">{camError}</span>
         </div>
       ) : null}
 
@@ -327,7 +335,7 @@ function App() {
           id="canvas-heading"
           className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--text-h)]"
         >
-          Canvas
+          Zone de rendu
         </h2>
         <Suspense
           fallback={
@@ -348,7 +356,7 @@ function App() {
 
       <section className="grid gap-3 border-2 border-[var(--border)] bg-[var(--surface)] p-4 shadow-[var(--shadow-hard)] md:grid-cols-2 lg:grid-cols-5">
         <label className="slider-control lg:col-span-2">
-          <span className="slider-label">Sunglasses size</span>
+          <span className="slider-label">Taille des lunettes</span>
           <input
             className="slider-range"
             type="range"
@@ -362,7 +370,7 @@ function App() {
         </label>
 
         <label className="slider-control lg:col-span-2">
-          <span className="slider-label">Clap sensitivity</span>
+          <span className="slider-label">Sensibilité au claquement</span>
           <input
             className="slider-range"
             type="range"
@@ -376,7 +384,7 @@ function App() {
         </label>
 
         <label className="slider-control lg:col-span-2">
-          <span className="slider-label">Sphere count</span>
+          <span className="slider-label">Nombre de sphères</span>
           <input
             className="slider-range"
             type="range"
@@ -392,7 +400,7 @@ function App() {
         </label>
 
         <label className="slider-control lg:col-span-2">
-          <span className="slider-label">Cluster spread</span>
+          <span className="slider-label">Écartement du groupe</span>
           <input
             className="slider-range"
             type="range"
@@ -410,7 +418,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Sphere size</span>
+          <span className="slider-label">Taille des sphères</span>
           <input
             className="slider-range"
             type="range"
@@ -428,7 +436,7 @@ function App() {
         </label>
 
         <label className="slider-control lg:col-span-2">
-          <span className="slider-label">Mouse influence radius</span>
+          <span className="slider-label">Rayon d’influence de la souris</span>
           <input
             className="slider-range"
             type="range"
@@ -446,7 +454,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Repel strength</span>
+          <span className="slider-label">Force de répulsion</span>
           <input
             className="slider-range"
             type="range"
@@ -464,7 +472,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Return strength</span>
+          <span className="slider-label">Force de retour</span>
           <input
             className="slider-range"
             type="range"
@@ -482,7 +490,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Damping</span>
+          <span className="slider-label">Amortissement</span>
           <input
             className="slider-range"
             type="range"
@@ -496,7 +504,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Rotation speed</span>
+          <span className="slider-label">Vitesse de rotation</span>
           <input
             className="slider-range"
             type="range"
@@ -512,7 +520,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Scale</span>
+          <span className="slider-label">Échelle</span>
           <input
             className="slider-range"
             type="range"
@@ -526,7 +534,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Stretch</span>
+          <span className="slider-label">Étirement</span>
           <input
             className="slider-range"
             type="range"
@@ -542,7 +550,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Bounce height</span>
+          <span className="slider-label">Hauteur du rebond</span>
           <input
             className="slider-range"
             type="range"
@@ -560,7 +568,7 @@ function App() {
         </label>
 
         <label className="slider-control">
-          <span className="slider-label">Bounce speed</span>
+          <span className="slider-label">Vitesse du rebond</span>
           <input
             className="slider-range"
             type="range"

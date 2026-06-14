@@ -23,12 +23,12 @@ export function SolarSystemView({ onSelectEarth }: SolarSystemViewProps) {
     <>
       {!zooming ? (
         <p className="tectonics-hint">
-          Click a planet number to reveal its name · Earth (3) opens the explorer · drag to orbit · scroll or pinch to zoom
+          Cliquez sur le numéro d’une planète pour afficher son nom · la Terre (3) ouvre l’explorateur · faites glisser pour orbiter · molette ou pincement pour zoomer
         </p>
       ) : null}
 
       {zoomPhase === 'zooming' ? (
-        <p className="tectonics-hint tectonics-hint--zoom">Flying to Earth…</p>
+        <p className="tectonics-hint tectonics-hint--zoom">Vol vers la Terre…</p>
       ) : null}
 
       <div

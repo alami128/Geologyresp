@@ -67,8 +67,8 @@ function PlanetNumberMarker({
           className={`solar-planet-number${revealed ? ' solar-planet-number--revealed' : ''}${isEarth ? ' solar-planet-number--earth' : ''}${revealed && isEarth ? ' solar-planet-number--earth-active' : ''}`}
           aria-label={
             revealed
-              ? `${body.name}${isEarth ? ' · opens Earth explorer' : ''}`
-              : `Planet ${body.number}`
+              ? `${body.name}${isEarth ? ' · ouvre l’explorateur Terre' : ''}`
+              : `Planète ${body.number}`
           }
           onClick={(event) => {
             event.stopPropagation()
@@ -201,7 +201,7 @@ function SceneLoader() {
   return (
     <Html center zIndexRange={[30, 0]}>
       <div className="solar-loading">
-        Loading solar system… {Math.round(progress)}%
+        Chargement du système solaire… {Math.round(progress)} %
       </div>
     </Html>
   )

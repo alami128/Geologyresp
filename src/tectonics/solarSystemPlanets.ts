@@ -26,7 +26,7 @@ export const SUN_RADIUS = 0.55
 export const SOLAR_PLANETS: PlanetDef[] = [
   {
     id: 'mercury',
-    name: 'Mercury',
+    name: 'Mercure',
     radius: 0.07,
     orbitRadius: 1.6,
     orbitSpeed: 2.4,
@@ -35,7 +35,7 @@ export const SOLAR_PLANETS: PlanetDef[] = [
   },
   {
     id: 'venus',
-    name: 'Venus',
+    name: 'Vénus',
     radius: 0.11,
     orbitRadius: 2.2,
     orbitSpeed: 1.8,
@@ -45,7 +45,7 @@ export const SOLAR_PLANETS: PlanetDef[] = [
   },
   {
     id: 'earth',
-    name: 'Earth',
+    name: 'Terre',
     radius: 0.12,
     orbitRadius: 3,
     orbitSpeed: 1.2,
@@ -73,7 +73,7 @@ export const SOLAR_PLANETS: PlanetDef[] = [
   },
   {
     id: 'saturn',
-    name: 'Saturn',
+    name: 'Saturne',
     radius: 0.24,
     orbitRadius: 6.8,
     orbitSpeed: 0.42,

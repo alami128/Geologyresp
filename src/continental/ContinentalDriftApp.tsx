@@ -5,23 +5,23 @@ import './continental.css'
 const chapterCards = [
   {
     eyebrow: '01',
-    title: 'Pangaea reconstruction',
-    text: 'Drag continents back together and discover how their coastlines, rocks, and fossils align.',
+    title: 'Reconstruction de la Pangée',
+    text: 'Rapprochez les continents et découvrez comment leurs côtes, roches et fossiles s’alignent.',
   },
   {
     eyebrow: '02',
-    title: 'Evidence for drift',
-    text: 'Explore Wegener’s fossil, climate, rock, and coastline clues through animated evidence cards.',
+    title: 'Preuves de la dérive',
+    text: 'Explorez les indices de Wegener — fossiles, climat, roches et côtes — via des cartes animées.',
   },
   {
     eyebrow: '03',
-    title: 'Timeline of motion',
-    text: 'Scrub from 300 million years ago to today and watch continents migrate across the planet.',
+    title: 'Chronologie du mouvement',
+    text: 'Remontez de 300 millions d’années à aujourd’hui et observez la migration des continents.',
   },
   {
     eyebrow: '04',
-    title: 'Plate tectonics simulator',
-    text: 'Test divergent, convergent, and transform boundaries with interactive SVG plate motion.',
+    title: 'Simulateur de tectonique',
+    text: 'Testez les limites divergentes, convergentes et transformantes avec des plaques animées.',
   },
 ]
 
@@ -29,13 +29,13 @@ function RotatingEarth() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <div className="cd-earth-stage" aria-label="Animated rotating Earth">
+    <div className="cd-earth-stage" aria-label="Terre animée en rotation">
       <motion.div
         className="cd-earth-orbit"
         animate={reduceMotion ? undefined : { rotate: 360 }}
         transition={{ duration: 42, repeat: Infinity, ease: 'linear' }}
       />
-      <svg className="cd-earth" viewBox="0 0 420 420" role="img" aria-label="Stylized Earth">
+      <svg className="cd-earth" viewBox="0 0 420 420" role="img" aria-label="Terre stylisée">
         <defs>
           <radialGradient id="earthOcean" cx="38%" cy="30%" r="70%">
             <stop offset="0%" stopColor="#68d8ff" />
@@ -94,14 +94,14 @@ function RotatingEarth() {
         animate={{ y: [0, -8, 0], opacity: [0.65, 1, 0.65] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
-        Plate velocity: 2–10 cm/year
+        Vitesse des plaques : 2–10 cm/an
       </motion.div>
       <motion.div
         className="cd-scan-card cd-scan-card--two"
         animate={{ y: [0, 10, 0], opacity: [0.55, 0.95, 0.55] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
       >
-        Fossils align across oceans
+        Fossiles alignés de part et d’autre des océans
       </motion.div>
     </div>
   )
@@ -120,7 +120,7 @@ export function ContinentalDriftApp() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Interactive science museum
+            Musée des sciences interactif
           </motion.p>
           <motion.h1
             id="continental-title"
@@ -129,8 +129,8 @@ export function ContinentalDriftApp() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.08 }}
           >
-            Continental Drift:
-            <span>The Moving Earth</span>
+            Dérive des continents :
+            <span>La Terre en mouvement</span>
           </motion.h1>
           <motion.p
             className="cd-intro"
@@ -138,8 +138,9 @@ export function ContinentalDriftApp() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.16 }}
           >
-            Continents are not fixed. They drift, collide, split, and rebuild the surface of
-            our planet over millions of years. Start with the evidence, then follow the plates.
+            Les continents ne sont pas fixes. Ils dérivent, entrent en collision, se séparent et
+            reconstruisent la surface de notre planète sur des millions d’années. Commencez par
+            les preuves, puis suivez les plaques.
           </motion.p>
           <motion.div
             className="cd-actions"
@@ -148,9 +149,9 @@ export function ContinentalDriftApp() {
             transition={{ duration: 0.7, delay: 0.24 }}
           >
             <button className="cd-start" type="button" onClick={() => setStarted(true)}>
-              Start experience
+              Commencer l’expérience
             </button>
-            <span className="cd-note">Designed for exploration, animation, and classroom display.</span>
+            <span className="cd-note">Conçu pour l’exploration, l’animation et l’affichage en classe.</span>
           </motion.div>
         </div>
 
@@ -169,11 +170,11 @@ export function ContinentalDriftApp() {
         initial={false}
         animate={started ? { opacity: 1, y: 0 } : { opacity: 0.72, y: 8 }}
         transition={{ duration: 0.45 }}
-        aria-label="Experience roadmap"
+        aria-label="Feuille de route de l’expérience"
       >
         <div className="cd-section-heading">
-          <p>Experience map</p>
-          <h2>{started ? 'Next: build the Pangaea reconstruction' : 'What this experience will become'}</h2>
+          <p>Parcours</p>
+          <h2>{started ? 'Prochaine étape : reconstruire la Pangée' : 'Ce que deviendra cette expérience'}</h2>
         </div>
         <div className="cd-card-grid">
           {chapterCards.map((card, index) => (

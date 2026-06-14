@@ -70,7 +70,7 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
   const detailStepCount = detailId ? getDetailStepCount(detailId) : 0
 
   const detailHint = useMemo(() => {
-    if (!detailId) return 'Drag to rotate · scroll to zoom · or pick a topic from the list'
+    if (!detailId) return 'Faites glisser pour tourner · molette pour zoomer · ou choisissez un phénomène dans la liste'
     return DETAIL_HINTS[detailId]
   }, [detailId])
 
@@ -193,7 +193,7 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
         className={`tectonics-back-btn tectonics-earth-ui${ready ? ' tectonics-earth-ui--visible' : ''}`}
         onClick={onBack}
       >
-        ← Solar system
+        ← Système solaire
       </button>
 
       <p
@@ -296,10 +296,10 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
         <InfoBar
           title={detailSteps[detailStep].title}
           description={detailSteps[detailStep].description}
-          stepIndicator={`Step ${detailStep + 1} of ${detailStepCount}`}
+          stepIndicator={`Étape ${detailStep + 1} sur ${detailStepCount}`}
           showBack
           showNext
-          nextLabel={detailStep < detailStepCount - 1 ? 'Next' : 'Done'}
+          nextLabel={detailStep < detailStepCount - 1 ? 'Suivant' : 'Terminer'}
           onBack={handleBack}
           onNext={handleNext}
         />

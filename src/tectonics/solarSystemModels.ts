@@ -24,12 +24,12 @@ export type SolarBodyDef = {
 
 /** Planets in order from the Sun (numbers 1–8). */
 export const SOLAR_SYSTEM_BODIES: SolarBodyDef[] = [
-  { number: 1, id: 'mercury', name: 'Mercury', nodeName: 'mercury_2' },
-  { number: 2, id: 'venus', name: 'Venus', nodeName: 'venus_5' },
-  { number: 3, id: 'earth', name: 'Earth', nodeName: 'erath_8' },
+  { number: 1, id: 'mercury', name: 'Mercure', nodeName: 'mercury_2' },
+  { number: 2, id: 'venus', name: 'Vénus', nodeName: 'venus_5' },
+  { number: 3, id: 'earth', name: 'Terre', nodeName: 'erath_8' },
   { number: 4, id: 'mars', name: 'Mars', nodeName: 'mars_12' },
   { number: 5, id: 'jupiter', name: 'Jupiter', nodeName: 'jupiter_15' },
-  { number: 6, id: 'saturn', name: 'Saturn', nodeName: 'saturn_19' },
+  { number: 6, id: 'saturn', name: 'Saturne', nodeName: 'saturn_19' },
   { number: 7, id: 'uranus', name: 'Uranus', nodeName: 'uranus_22' },
   { number: 8, id: 'neptune', name: 'Neptune', nodeName: 'neptune_25' },
 ]

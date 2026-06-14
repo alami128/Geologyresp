@@ -279,7 +279,7 @@ export function useFingerPointer(): FingerPointerState {
     }
 
     start().catch((err: unknown) => {
-      const message = err instanceof Error ? err.message : 'Camera error'
+      const message = err instanceof Error ? err.message : 'Erreur caméra'
       setError(message)
       setEnabled(false)
     })

@@ -22,14 +22,14 @@ export function InfoBar({
   showClose = false,
   showNext = false,
   showBack = false,
-  nextLabel = 'Next',
+  nextLabel = 'Suivant',
   stepIndicator,
 }: InfoBarProps) {
   return (
     <div
       className="tectonics-info-bar"
       role="region"
-      aria-label="Topic explanation"
+      aria-label="Explication du phénomène"
       aria-live="polite"
     >
       <div className="tectonics-info-bar__inner">
@@ -43,7 +43,7 @@ export function InfoBar({
         <div className="tectonics-info-bar__actions">
           {showBack && onBack ? (
             <button type="button" className="tectonics-info-bar__back" onClick={onBack}>
-              Back
+              Retour
             </button>
           ) : null}
           {showNext && onNext ? (
@@ -56,9 +56,9 @@ export function InfoBar({
               type="button"
               className="tectonics-info-bar__close"
               onClick={onClose}
-              aria-label="Close explanation"
+              aria-label="Fermer l'explication"
             >
-              Close
+              Fermer
             </button>
           ) : null}
         </div>

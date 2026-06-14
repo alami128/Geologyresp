@@ -158,7 +158,7 @@ export function RiftDetailScene({ step }: RiftDetailSceneProps) {
         <boxGeometry args={[0.12, 1.1, 0.12]} />
         <meshBasicMaterial color="#e53935" transparent opacity={0} />
       </mesh>
-      <Label position={[0.22, 0.05, 0.35]}>Lava conduit</Label>
+      <Label position={[0.22, 0.05, 0.35]}>Conduit de lave</Label>
 
       <mesh ref={leftOuterRef} position={[-1.05, 0.35, 0]}>
         <boxGeometry args={[0.75, 0.55, 0.4]} />
@@ -181,7 +181,7 @@ export function RiftDetailScene({ step }: RiftDetailSceneProps) {
         <meshBasicMaterial color="#3d3d3d" />
       </mesh>
 
-      <Label position={[1.15, 0.55, 0.35]}>Continental crust</Label>
+      <Label position={[1.15, 0.55, 0.35]}>Croûte continentale</Label>
 
       <mesh position={[-0.72, 0.05, 0.18]}>
         <boxGeometry args={[0.06, 0.5, 0.02]} />
@@ -199,7 +199,7 @@ export function RiftDetailScene({ step }: RiftDetailSceneProps) {
         <boxGeometry args={[0.06, 0.5, 0.02]} />
         <meshBasicMaterial color="#1a1a1a" />
       </mesh>
-      <Label position={[-0.45, 0.35, 0.35]}>Fault</Label>
+      <Label position={[-0.45, 0.35, 0.35]}>Faille</Label>
 
       <group ref={lavaRef} visible={false} position={[0, 0.22, 0.2]}>
         <mesh position={[-0.08, 0, 0]}>
@@ -210,7 +210,7 @@ export function RiftDetailScene({ step }: RiftDetailSceneProps) {
           <boxGeometry args={[0.15, 0.05, 0.12]} />
           <meshBasicMaterial color="#ef5350" transparent opacity={0} />
         </mesh>
-        <Label position={[0, 0.18, 0.2]}>Lava flow</Label>
+        <Label position={[0, 0.18, 0.2]}>Coulée de lave</Label>
       </group>
 
       {/* Large white outward arrows */}
