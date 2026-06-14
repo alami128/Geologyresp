@@ -25,7 +25,7 @@ export function SketchfabEmbed({ modelId, title, pageUrl }: SketchfabEmbedProps)
         target="_blank"
         rel="noopener noreferrer"
       >
-        View on Sketchfab
+        Voir sur Sketchfab
       </a>
     </div>
   )

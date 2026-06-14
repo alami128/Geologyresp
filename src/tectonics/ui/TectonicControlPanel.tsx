@@ -38,16 +38,16 @@ export function TectonicControlPanel({
   return (
     <aside
       className={`tectonic-control${className ? ` ${className}` : ''}`}
-      aria-label="Tectonic plate layers"
+      aria-label="Couches tectoniques"
     >
       <header className="tectonic-control__header">
         <span className="tectonic-control__title">
           <span className="tectonic-control__eye" aria-hidden="true">
             ◉
           </span>
-          Control
+          Contrôle
         </span>
-        <button type="button" className="tectonic-control__close" onClick={onClose} aria-label="Close">
+        <button type="button" className="tectonic-control__close" onClick={onClose} aria-label="Fermer">
           ×
         </button>
       </header>

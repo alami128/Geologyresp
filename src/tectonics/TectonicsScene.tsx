@@ -8,7 +8,7 @@ import { MantleConvectionScene } from './scenes/MantleConvectionScene'
 import { TectonicPlatesScene } from './scenes/TectonicPlatesScene'
 import { preloadSketchfabModels, SketchfabModelScene } from './scenes/SketchfabModelScene'
 import { ExplorerLighting } from './shared/ExplorerLighting'
-import { DETAIL_MODELS, getDetailModelSettings, type DetailId } from './topicDetail'
+import { DETAIL_MODELS, getDetailModelSettings, usesSketchfabEmbed, type DetailId } from './topicDetail'
 import type { MantleFlowId } from './mantleConvectionModel'
 import type { TectonicLayerId } from './tectonicLayers'
 import { useExplorerCamera, type CameraMode } from './useExplorerCamera'
@@ -32,7 +32,7 @@ type TectonicsSceneProps = {
   onDeselect: () => void
 }
 
-preloadSketchfabModels(Object.values(DETAIL_MODELS))
+preloadSketchfabModels(Object.values(DETAIL_MODELS).filter((path): path is string => Boolean(path)))
 
 function CameraController({ mode, enabled }: { mode: CameraMode; enabled: boolean }) {
   useExplorerCamera(mode, enabled)
@@ -77,6 +77,7 @@ export function TectonicsScene({
   const earthStructureSettings = getDetailModelSettings('earth-structure')
   const mantleConvectionSettings = getDetailModelSettings('mantle-convection')
 
+  const isSketchfabDetail = usesSketchfabEmbed(detailId)
   const showTectonicPlates = view === 'model-detail' && detailId === 'rift' && !transitioning
   const showEarthStructure =
     view === 'model-detail' && detailId === 'earth-structure' && !transitioning
@@ -88,19 +89,22 @@ export function TectonicsScene({
     detailId !== 'rift' &&
     detailId !== 'earth-structure' &&
     detailId !== 'mantle-convection' &&
+    !isSketchfabDetail &&
     !transitioning
   const modelSettings =
     detailId &&
     detailId !== 'rift' &&
     detailId !== 'earth-structure' &&
-    detailId !== 'mantle-convection'
+    detailId !== 'mantle-convection' &&
+    !isSketchfabDetail
       ? getDetailModelSettings(detailId)
       : null
   const modelPath =
     detailId &&
     detailId !== 'rift' &&
     detailId !== 'earth-structure' &&
-    detailId !== 'mantle-convection'
+    detailId !== 'mantle-convection' &&
+    !isSketchfabDetail
       ? DETAIL_MODELS[detailId]
       : null
 
@@ -113,7 +117,10 @@ export function TectonicsScene({
   useFrame(() => {
     if (!globeGroupRef.current) return
     const hideForDetail =
-      detailId === 'rift' || detailId === 'earth-structure' || detailId === 'mantle-convection'
+      detailId === 'rift' ||
+      detailId === 'earth-structure' ||
+      detailId === 'mantle-convection' ||
+      isSketchfabDetail
     globeGroupRef.current.visible =
       !showTectonicPlates &&
       !showEarthStructure &&

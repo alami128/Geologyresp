@@ -6,7 +6,9 @@ import {
   getDetailId,
   getDetailStepCount,
   getDetailSteps,
+  getSketchfabEmbed,
   topicHasDetail,
+  usesSketchfabEmbed,
 } from './topicDetail'
 import { createInitialMantleFlowState, type MantleFlowId } from './mantleConvectionModel'
 import { createInitialLayerState, type TectonicLayerId } from './tectonicLayers'
@@ -20,6 +22,7 @@ import { EarthInteriorPanel } from './ui/EarthInteriorPanel'
 import { GlobeInfoBar, InfoBar } from './ui/InfoBar'
 import { MantleConvectionPanel } from './ui/MantleConvectionPanel'
 import { TectonicControlPanel } from './ui/TectonicControlPanel'
+import { SketchfabEmbed } from './ui/SketchfabEmbed'
 import { TopicList } from './ui/TopicList'
 
 const TRANSITION_MS = 900
@@ -58,6 +61,11 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
   const inTectonicPlates = inModelDetail && detailId === 'rift'
   const inEarthInterior = inModelDetail && detailId === 'earth-structure'
   const inMantleConvection = inModelDetail && detailId === 'mantle-convection'
+  const inSketchfabEmbed = usesSketchfabEmbed(detailId) && inModelDetail
+  const sketchfabConfig = detailId && usesSketchfabEmbed(detailId) ? getSketchfabEmbed(detailId) : null
+  const showSketchfabViewer = Boolean(
+    sketchfabConfig && usesSketchfabEmbed(detailId) && (inModelDetail || transitioning),
+  )
   const detailSteps = detailId ? getDetailSteps(detailId) : []
   const detailStepCount = detailId ? getDetailStepCount(detailId) : 0
 
@@ -74,22 +82,31 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
     }, TRANSITION_MS)
   }, [])
 
+  const enterModelDetailForTopic = useCallback(
+    (topicId: string) => {
+      setDetailStep(0)
+      const nextDetailId = getDetailId(topicId)
+      if (nextDetailId === 'rift') {
+        setActiveTectonicLayers(createInitialLayerState())
+        setLayerAnimKeys({})
+      }
+      if (nextDetailId === 'earth-structure') {
+        setSelectedEarthLayerId(null)
+        setEarthInteriorAnimKey((key) => key + 1)
+      }
+      if (nextDetailId === 'mantle-convection') {
+        setActiveMantleFlows(createInitialMantleFlowState())
+        setMantleFlowAnimKeys({})
+      }
+      startTransition('model-detail')
+    },
+    [startTransition],
+  )
+
   const enterModelDetail = useCallback(() => {
-    setDetailStep(0)
-    if (getDetailId(selectedId) === 'rift') {
-      setActiveTectonicLayers(createInitialLayerState())
-      setLayerAnimKeys({})
-    }
-    if (getDetailId(selectedId) === 'earth-structure') {
-      setSelectedEarthLayerId(null)
-      setEarthInteriorAnimKey((key) => key + 1)
-    }
-    if (getDetailId(selectedId) === 'mantle-convection') {
-      setActiveMantleFlows(createInitialMantleFlowState())
-      setMantleFlowAnimKeys({})
-    }
-    startTransition('model-detail')
-  }, [selectedId, startTransition])
+    if (!selectedId) return
+    enterModelDetailForTopic(selectedId)
+  }, [enterModelDetailForTopic, selectedId])
 
   const handlePlayEarthAnimation = useCallback(() => {
     setEarthInteriorAnimKey((key) => key + 1)
@@ -126,9 +143,13 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
       if (view === 'model-detail') {
         setDetailStep(0)
         startTransition('globe')
+        return
+      }
+      if (topicHasDetail(id)) {
+        enterModelDetailForTopic(id)
       }
     },
-    [view, startTransition],
+    [view, startTransition, enterModelDetailForTopic],
   )
 
   const exitModelDetail = useCallback(() => {
@@ -180,7 +201,7 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
       >
         {inModelDetail
           ? detailHint
-          : 'Pick a phenomenon from the menu · drag to rotate · scroll to zoom'}
+          : 'Choisissez un phénomène dans la liste · faites glisser pour tourner · molette pour zoomer'}
       </p>
 
       {inTectonicPlates ? (
@@ -214,31 +235,39 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
       <div
         className={`tectonics-canvas-wrap tectonics-earth-ui tectonics-earth-ui--delay-2${ready ? ' tectonics-earth-ui--visible' : ''}${transitioning ? ' tectonics-canvas-wrap--transition' : ''}`}
       >
-        <Canvas
-          camera={{ position: [0, 0.2, 4], fov: 45, near: 0.1, far: 100 }}
-          gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
-          dpr={[1, 2]}
-          onCreated={({ gl }) => {
-            gl.toneMappingExposure = 1.05
-          }}
-        >
-          <TectonicsScene
-            view={view}
-            transitioning={transitioning}
-            selectedId={selectedId}
-            focusTopicId={focusTopicId}
-            detailId={detailId}
-            activeTectonicLayers={activeTectonicLayers}
-            layerAnimKeys={layerAnimKeys}
-            selectedEarthLayerId={selectedEarthLayerId}
-            earthInteriorAnimKey={earthInteriorAnimKey}
-            activeMantleFlows={activeMantleFlows}
-            mantleFlowAnimKeys={mantleFlowAnimKeys}
-            onEarthLayerSelect={handleEarthLayerSelect}
-            onSelectTopic={handleSelectTopic}
-            onDeselect={() => setSelectedId(null)}
+        {showSketchfabViewer && sketchfabConfig ? (
+          <SketchfabEmbed
+            modelId={sketchfabConfig.modelId}
+            title={sketchfabConfig.title}
+            pageUrl={sketchfabConfig.pageUrl}
           />
-        </Canvas>
+        ) : (
+          <Canvas
+            camera={{ position: [0, 0.2, 4], fov: 45, near: 0.1, far: 100 }}
+            gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+            dpr={[1, 2]}
+            onCreated={({ gl }) => {
+              gl.toneMappingExposure = 1.05
+            }}
+          >
+            <TectonicsScene
+              view={view}
+              transitioning={transitioning}
+              selectedId={selectedId}
+              focusTopicId={focusTopicId}
+              detailId={detailId}
+              activeTectonicLayers={activeTectonicLayers}
+              layerAnimKeys={layerAnimKeys}
+              selectedEarthLayerId={selectedEarthLayerId}
+              earthInteriorAnimKey={earthInteriorAnimKey}
+              activeMantleFlows={activeMantleFlows}
+              mantleFlowAnimKeys={mantleFlowAnimKeys}
+              onEarthLayerSelect={handleEarthLayerSelect}
+              onSelectTopic={handleSelectTopic}
+              onDeselect={() => setSelectedId(null)}
+            />
+          </Canvas>
+        )}
       </div>
 
       {!inModelDetail ? (
@@ -258,7 +287,12 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
         />
       ) : null}
 
-      {inModelDetail && detailSteps.length > 0 && !inTectonicPlates && !inEarthInterior && !inMantleConvection ? (
+      {inModelDetail &&
+      detailSteps.length > 0 &&
+      !inTectonicPlates &&
+      !inEarthInterior &&
+      !inMantleConvection &&
+      !inSketchfabEmbed ? (
         <InfoBar
           title={detailSteps[detailStep].title}
           description={detailSteps[detailStep].description}
@@ -268,6 +302,15 @@ export function EarthView({ onBack, ready = true }: EarthViewProps) {
           nextLabel={detailStep < detailStepCount - 1 ? 'Next' : 'Done'}
           onBack={handleBack}
           onNext={handleNext}
+        />
+      ) : null}
+
+      {inSketchfabEmbed && detailSteps[0] ? (
+        <InfoBar
+          title={detailSteps[detailStep].title}
+          description={detailSteps[detailStep].description}
+          showBack
+          onBack={handleBack}
         />
       ) : null}
 
